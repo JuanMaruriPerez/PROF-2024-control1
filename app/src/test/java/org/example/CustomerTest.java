@@ -2,6 +2,15 @@ package es.upm.grise.prof.curso2024.control1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+
+import es.upm.grise.prof.curso2024.control1.Account;
+import es.upm.grise.prof.curso2024.control1.Customer;
+
+
+
 
 class CustomerTest {
 
@@ -33,6 +42,30 @@ class CustomerTest {
         assertEquals(ACCOUNT_2_NUMBER, accountWithHighestBalance, 
                 "the account should be " + ACCOUNT_2_NUMBER);
     }
+
+    @Test
+    void MOCKITOtestGetAccountWithHighestBalance() throws NoAccountsException {
+        Customer mockCustomer = mock(Customer.class);
+
+        when(mockCustomer.getAccounts()).thenReturn(Arrays.asList(mockAccount1, mockAccount2));
+
+        Account mockAccount1 = mock(Account.class);
+        Account mockAccount2 = mock(Account.class);
+
+        when(mockAccount1.getAccountNumber()).thenReturn(ACCOUNT_1_NUMBER);
+        when(mockAccount1.getCurrentBalance()).thenReturn(ACCOUNT_1_BALANCE);
+
+        when(mockAccount2.getAccountNumber()).thenReturn(ACCOUNT_2_NUMBER);
+        when(mockAccount2.getCurrentBalance()).thenReturn(ACCOUNT_2_BALANCE);
+
+
+        String accountWithHighestBalance = mockCustomer.getAccountWithHighestBalance();
+
+        assertEquals(ACCOUNT_2_NUMBER, accountWithHighestBalance, 
+                "the account should be " + ACCOUNT_2_NUMBER);
+    }
+
+
 }
 
 
