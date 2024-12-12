@@ -19,6 +19,9 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    testImplementation("org.mockito:mockito-core:5.7.0") 
 }
 
 testing {
